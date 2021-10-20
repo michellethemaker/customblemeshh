@@ -80,10 +80,10 @@ class customblemeshEnv(gym.Env):
     You receive a reward of 1 if you reach the goal, and zero otherwise.
     """
 
-    metadata = {"render.modes": ["human", "ansi"]}
+metadata = {"render.modes": ["human", "ansi"]}
         
-    def __init__(self, desc=None, map_name="4x4", is_slippery=True):
-    if desc is None and map_name is None:
+def __init__(self, desc=None, map_name="4x4", is_slippery=True):
+   s if desc is None and map_name is None:
         desc = generate_random_map()
     elif desc is None:
         desc = MAPS[map_name]
