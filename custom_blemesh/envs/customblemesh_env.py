@@ -83,21 +83,21 @@ class customblemeshEnv(gym.Env):
 metadata = {"render.modes": ["human", "ansi"]}
 
     def __init__(self, desc=None, map_name="4x4", is_slippery=True):
-        if desc is None and map_name is None:
-            desc = generate_random_map()
-        elif desc is None:
-            desc = MAPS[map_name]
-        self.desc = desc = np.asarray(desc, dtype="c")
-        self.nrow, self.ncol = nrow, ncol = desc.shape
-        self.reward_range = (0, 1)
+    if desc is None and map_name is None:
+        desc = generate_random_map()
+    elif desc is None:
+        desc = MAPS[map_name]
+    self.desc = desc = np.asarray(desc, dtype="c")
+    self.nrow, self.ncol = nrow, ncol = desc.shape
+    self.reward_range = (0, 1)
 
-        nA = 4
-        nS = nrow * ncol
+    nA = 4
+    nS = nrow * ncol
 
-        isd = np.array(desc == b"S").astype("float64").ravel()
-        isd /= isd.sum()
+    isd = np.array(desc == b"S").astype("float64").ravel()
+    isd /= isd.sum()
 
-        P = {s: {a: [] for a in range(nA)} for s in range(nS)}
+    P = {s: {a: [] for a in range(nA)} for s in range(nS)}
 
     def to_s(row, col):
         return row * ncol + col
