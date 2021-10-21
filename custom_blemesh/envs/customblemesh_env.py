@@ -1,4 +1,6 @@
 import gym
+from gym import spaces
+
 import sys
 from contextlib import closing
 
@@ -67,23 +69,10 @@ def generate_random_map(size=8, p=0.8):
     
 
 class customblemeshEnv(gym.Env):
-     """
-        SFFF
-        FHFH
-        FFFH
-        HFFG
-    S : starting point, safe
-    F : frozen surface, safe
-    H : hole, fall to your doom
-    G : goal, where the frisbee is located
-    The episode ends when you reach the goal or fall in a hole.
-    You receive a reward of 1 if you reach the goal, and zero otherwise.
-    """
 
     metadata = {"render.modes": ["human", "ansi"]}
 
     def __init__(self, desc=None, map_name="4x4", is_slippery=True):
-        
 
         nA = 4
         nS = nrow * ncol
@@ -132,7 +121,7 @@ class customblemeshEnv(gym.Env):
                         else:
                             li.append((1.0, *update_probability_matrix(row, col, a)))
 
-        super(FrozenLakeEnv, self).__init__(nS, nA, P, isd)
+        super(customblemeshEnv, self).__init__(nS, nA, P, isd)
 
     def render(self, mode="human"):
         outfile = StringIO() if mode == "ansi" else sys.stdout
